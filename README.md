@@ -1,6 +1,6 @@
 # Шаблон проекта на Django и Django REST framework
 
-Универсальный пустой шаблон для создания проектов на **Django** и **Django REST framework**.
+Универсальный пустой шаблон для создания проектов с использованием **Django**, **Django REST framework**, **PostgreSQL**, **Docker**, **Docker-compose**.
 
 ## Запуск
 
@@ -55,6 +55,7 @@ curl \
 
 - [Django](https://www.djangoproject.com/) v. 4.0.4
 - [Django REST framework](https://www.django-rest-framework.org/) v. 3.13.1
+- [Psycopg](https://www.psycopg.org/docs/) v. 2.9.3 - PostgreSQL database adapter for Python
 - [drf-yasg](https://drf-yasg.readthedocs.io/en/stable/) v. 1.20.0 - Yet another Swagger generator. Generate real Swagger/OpenAPI 2.0 specifications from a Django Rest Framework API
 - [Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/) v. 5.1.0 - Simple JWT provides a JSON Web Token authentication backend for the Django REST Framework
 - [python-dotenv](https://pypi.org/project/python-dotenv/) v. 0.20.0 - Reads key-value pairs from a `.env` file and can set them as environment variables
