@@ -1,6 +1,9 @@
 django
 djangorestframework
 djangorestframework-simplejwt
+redis
+celery
+flower
 psycopg2-binary
 drf-yasg
 python-dotenv

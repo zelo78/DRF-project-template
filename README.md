@@ -1,6 +1,6 @@
 # Шаблон проекта на Django и Django REST framework
 
-Универсальный пустой шаблон для создания проектов с использованием **Django**, **Django REST framework**, **PostgreSQL**, **Docker**, **Docker-compose**.
+Универсальный пустой шаблон для создания проектов с использованием **Django**, **Django REST framework**, **PostgreSQL**, **Celery**, **Redis**, **Flower**, **Docker**, **Docker-compose**.
 
 ## Запуск
 
@@ -26,6 +26,7 @@ docker exec -it app python manage.py createsuperuser
 - <http://0.0.0.0:8000/admin/> - интерфейс администрирования
 - <http://0.0.0.0:8000/api/> - API интерфейс
 - <http://0.0.0.0:8000/api/token/> - API авторизации
+- <http://0.0.0.0:5555/> - Flower - Celery monitoring tool
 
 ### Swagger/OpenAPI 2.0 specifications
 
@@ -51,11 +52,18 @@ curl \
   http://127.0.0.1:8000/api/users/
 ```
 
+### Тестовые URL
+1. <http://0.0.0.0:8000/api/users/> - Получение списка Пользователей
+2. <http://0.0.0.0:8000/> - Страница-заглушка, вызывает выполнение задания через Celery. Также выполнение этого задания стоит в расписании (каждые 5 минут) 
+
 ## Использованные библиотеки
 
 - [Django](https://www.djangoproject.com/) v. 4.0.4
 - [Django REST framework](https://www.django-rest-framework.org/) v. 3.13.1
 - [Psycopg](https://www.psycopg.org/docs/) v. 2.9.3 - PostgreSQL database adapter for Python
+- [Celery](https://docs.celeryq.dev/en/stable/index.html) v. 5.2.6 - It’s a task queue with focus on real-time processing, while also supporting task scheduling
+- [Flower](https://flower.readthedocs.io/en/latest/index.html) v. 1.0.0 - Celery monitoring tool
+- [redis-py](https://pypi.org/project/redis/) v. 4.2.2 - The Python interface to the Redis key-value store
 - [drf-yasg](https://drf-yasg.readthedocs.io/en/stable/) v. 1.20.0 - Yet another Swagger generator. Generate real Swagger/OpenAPI 2.0 specifications from a Django Rest Framework API
 - [Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/) v. 5.1.0 - Simple JWT provides a JSON Web Token authentication backend for the Django REST Framework
 - [python-dotenv](https://pypi.org/project/python-dotenv/) v. 0.20.0 - Reads key-value pairs from a `.env` file and can set them as environment variables

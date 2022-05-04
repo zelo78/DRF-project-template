@@ -2,8 +2,8 @@ version: "3.2"
 services:
   app:
     build: .
-    container_name: app
-    image: app
+    container_name: zelo_app
+    image: zelo_app
     restart: always
     command: >
       sh -c "python3 manage.py wait_for_db &&
@@ -18,12 +18,49 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - redis
   db:
     image: postgres:14.2-alpine
     container_name: db
+    restart: always
     volumes:
       - ./db/:/var/lib/postgresql/data/
     env_file:
       - .env
     expose:
       - "5432"
+  redis:
+    image: redis:alpine
+    container_name: redis
+    expose:
+      - "6379"
+  celery:
+    # build: .
+    image: zelo_app
+    container_name: celery
+    restart: always
+    command: >
+      sh -c "celery -A app worker -l info &
+            celery -A app beat -l info"
+    env_file:
+      - .env
+    volumes:
+      - ./project:/project
+    depends_on:
+      - db
+      - redis
+      - app
+  flower:
+    image: mher/flower
+    container_name: flower
+    command: celery --broker=redis://${REDIS_HOST}:${REDIS_PORT}/0 flower --port=5555
+    ports:
+      - "5555:5555"
+    env_file:
+      - .env
+    volumes:
+      - ./project:/project
+    depends_on:
+      - celery
+      - redis
+      - app
