@@ -2,24 +2,28 @@
 
 Универсальный пустой шаблон для создания проектов с использованием **Django**, **Django REST framework**, **PostgreSQL**, **Celery**, **Redis**, **Flower**, **Docker**, **Docker-compose**.
 
-## Установка 
+## Установка
 
 1. Клонировать проект в пустую папку:
 ```shell
 git clone https://github.com/zelo78/DRF-project-template.git .
 ```
+
 2. Копировать файл `start.env` как `.env` (Он должен находится в корне проекта, рядом с `README.md`)
 ```shell
 cp start.env .env
 ```
+
 3. Создать и запустить контейнер (при запуске контейнера будут созданы и применены миграции):
 ```shell
 docker-compose up -d --build
-``` 
+```
+
 4. Создать суперпользователя:
 ```shell
-docker exec -it app python manage.py createsuperuser --username USER
+docker exec -it zapp python manage.py createsuperuser --username USER
 ```
+
 5. Остановить контейнер:
 ```shell
 docker-compose down
@@ -64,7 +68,7 @@ curl \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{"username": "USER", "password": "PASSWORD"}' \
-  http://127.0.0.1:8000/api/token/
+  http://0.0.0.0:8000/api/token/
 ```
 
 Получаем ответ вида

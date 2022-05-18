@@ -2,8 +2,8 @@ version: "3.2"
 services:
   app:
     build: .
-    container_name: zelo_app
-    image: zelo_app
+    image: zapp
+    container_name: zapp
     restart: always
     command: >
       sh -c "python3 manage.py wait_for_db &&
